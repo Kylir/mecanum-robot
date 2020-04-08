@@ -1,4 +1,5 @@
 # mecanum-robot
+
 Code for a mecanum robot programmed in NodeJS
 
 ## Install NodeJS
@@ -52,6 +53,6 @@ This one is quite easy. You need `git` on your raspberry and then you clone the 
 
 ### Git
 
+### PiGpio
 
-
-
+sudo apt-get install pigpio
