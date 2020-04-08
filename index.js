@@ -1,5 +1,5 @@
 const gpioUtils = require("./src/gpioUtils");
 
-gpioUtils.moveLeftForward(100);
+gpioUtils.moveLeftForward(200);
 
-setTimeout(gpioUtils.stop, 1000);
+setTimeout(gpioUtils.stop, 2000);
