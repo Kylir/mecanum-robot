@@ -1,13 +1,51 @@
 const Gpio = require("pigpio").Gpio;
 
 // Motor A - Left track
-const ain1 = new Gpio(17, { mode: Gpio.OUTPUT });
-const ain2 = new Gpio(27, { mode: Gpio.OUTPUT });
-const pwma = new Gpio(22, { mode: Gpio.OUTPUT });
+const front_ain1 = new Gpio(17, { mode: Gpio.OUTPUT });
+const front_ain2 = new Gpio(27, { mode: Gpio.OUTPUT });
+const front_pwma = new Gpio(22, { mode: Gpio.OUTPUT });
 // Motor B - right track
-const bin1 = new Gpio(18, { mode: Gpio.OUTPUT });
-const bin2 = new Gpio(23, { mode: Gpio.OUTPUT });
-const pwmb = new Gpio(24, { mode: Gpio.OUTPUT });
+const front_bin1 = new Gpio(18, { mode: Gpio.OUTPUT });
+const front_bin2 = new Gpio(23, { mode: Gpio.OUTPUT });
+const front_pwmb = new Gpio(24, { mode: Gpio.OUTPUT });
+// Motor A - Left track
+const back_ain1 = new Gpio(26, { mode: Gpio.OUTPUT });
+const back_ain2 = new Gpio(19, { mode: Gpio.OUTPUT });
+const back_pwma = new Gpio(13, { mode: Gpio.OUTPUT });
+// Motor B - right track
+const back_bin1 = new Gpio(16, { mode: Gpio.OUTPUT });
+const back_bin2 = new Gpio(20, { mode: Gpio.OUTPUT });
+const back_pwmb = new Gpio(21, { mode: Gpio.OUTPUT });
+
+function allMotorsForward(pwm) {
+  front_ain1.digitalWrite(1);
+  front_ain2.digitalWrite(0);
+  front_pwma.pwmWrite(pwm);
+  front_bin1.digitalWrite(1);
+  front_bin2.digitalWrite(0);
+  front_pwmb.pwmWrite(pwm);
+  back_ain1.digitalWrite(1);
+  back_ain2.digitalWrite(0);
+  back_pwma.pwmWrite(pwm);
+  back_bin1.digitalWrite(1);
+  back_bin2.digitalWrite(0);
+  back_pwmb.pwmWrite(pwm);
+}
+
+function allMotorsStop() {
+  front_pwma.pwmWrite(0);
+  front_ain1.digitalWrite(0);
+  front_ain2.digitalWrite(0);
+  front_pwmb.pwmWrite(0);
+  front_bin1.digitalWrite(0);
+  front_bin2.digitalWrite(0);
+  back_pwma.pwmWrite(0);
+  back_ain1.digitalWrite(0);
+  back_ain2.digitalWrite(0);
+  back_pwmb.pwmWrite(0);
+  back_bin1.digitalWrite(0);
+  back_bin2.digitalWrite(0);
+}
 
 // Primitives to stop the robot
 function stopLeft() {
@@ -135,6 +173,8 @@ function recenter(deviation) {
 }
 
 module.exports = {
+  allMotorsForward,
+  allMotorsStop,
   moveLeft,
   moveLeftForward,
   moveLeftBackward,
