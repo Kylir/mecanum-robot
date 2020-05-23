@@ -19,11 +19,6 @@ var gamepad = ds.open(device, {
     moveDeadband: 4,
 })
 
-gamepad.onmotion = true
-gamepad.onstatus = true
-
-gamepad.onupdate = function (changed) {
-    if (changed.analog) {
-        console.log(changed)
-    }
+gamepad.onanalog = function (axis, value) {
+    console.log(axis, value)
 }
