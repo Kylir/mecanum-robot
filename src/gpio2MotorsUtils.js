@@ -64,13 +64,14 @@ function moveLeftBackward(pwm) {
  * If pwm is negative it'll go backward.
  * @param {number} pwm the amout of pwm
  */
-function moveLeft(pwm) {
+function moveLeft(pwm, multiplier) {
+    let multip = multiplier || 1
     if (pwm === 0) {
         stopLeft()
     } else if (pwm > 0) {
-        moveLeftForward(pwm)
+        moveLeftForward(pwm * multip)
     } else {
-        moveLeftBackward(-pwm)
+        moveLeftBackward(-pwm * multip)
     }
 }
 
@@ -93,13 +94,14 @@ function moveRightBackward(pwm) {
  * If pwm is negative it'll go backward.
  * @param {number} pwm the amout of pwm
  */
-function moveRight(pwm) {
+function moveRight(pwm, multiplier) {
+    let multip = multiplier || 1
     if (pwm === 0) {
         stopRight()
     } else if (pwm > 0) {
-        moveRightForward(pwm)
+        moveRightForward(pwm * multip
     } else {
-        moveRightBackward(-pwm)
+        moveRightBackward(-pwm * multip)
     }
 }
 
